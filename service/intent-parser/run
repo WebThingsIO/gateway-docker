@@ -1,0 +1,3 @@
+#!/bin/sh
+exec 2>&1
+exec su - user -c "cd /home/user/mozilla-iot/intent-parser && ./intent-parser-server.py"
