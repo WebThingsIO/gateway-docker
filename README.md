@@ -13,6 +13,7 @@ docker build -t gateway .
 ```
 docker run \
     -d \
+    -v /path/to/shared/data:/home/user/.mozilla-iot \
     -p 80:8080 \
     -p 443:4443 \
     --name mozilla-iot-gateway \
