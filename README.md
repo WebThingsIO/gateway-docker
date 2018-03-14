@@ -5,21 +5,16 @@ Docker image based on Debian Stretch for running the [Mozilla IoT Gateway](https
 # Building
 
 ```
-docker build -t gateway .
+$ docker build -t gateway .
 ```
 
 # Running
 
 ```
-docker run \
+$ docker run \
     -d \
     -v /path/to/shared/data:/home/user/.mozilla-iot \
-    -p 80:8080 \
-    -p 443:4443 \
+    --net=host \
     --name mozilla-iot-gateway \
     gateway
 ```
-
-## Add-ons
-
-Some add-ons listen on a TCP/UDP port for various things, so you'll have to add additional port bindings for your `docker run` command as necessary.
