@@ -18,3 +18,7 @@ docker run \
     --name mozilla-iot-gateway \
     gateway
 ```
+
+## Add-ons
+
+Some add-ons listen on a TCP/UDP port for various things, so you'll have to add additional port bindings for your `docker run` command as necessary.
