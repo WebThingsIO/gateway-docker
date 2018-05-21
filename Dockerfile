@@ -10,6 +10,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
         certbot \
         cron \
         git \
+        libcap2-bin \
         libffi-dev \
         libnanomsg-dev \
         libnanomsg4 \
@@ -24,7 +25,6 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
         runit \
         sudo && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    echo "0 */12 * * * root /home/node/mozilla-iot/gateway/tools/renew-certificates.sh" > /etc/cron.d/renew-certs && \
     pip2 install git+https://github.com/mozilla-iot/gateway-addon-python#egg=gateway_addon && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
@@ -44,5 +44,7 @@ RUN cd /home/node && \
 
 USER root
 ADD service /etc/service
+ADD cron.d /etc/cron.d
+ADD scripts /opt/scripts
 
 ENTRYPOINT ["/usr/bin/runsvdir", "/etc/service"]

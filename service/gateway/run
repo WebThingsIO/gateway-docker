@@ -1,3 +1,5 @@
 #!/bin/sh
+
+export MOZIOT_HOME=/home/node/.mozilla-iot
 exec 2>&1
 exec su - node -c "cd /home/node/mozilla-iot/gateway && ./run-app.sh"
