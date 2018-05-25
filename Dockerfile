@@ -28,19 +28,19 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
     pip2 install git+https://github.com/mozilla-iot/gateway-addon-python#egg=gateway_addon && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
-    npm install -g yarn && \
     usermod -a -G sudo node && \
     touch /etc/inittab && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER node
 RUN cd /home/node && \
+    npm install yarn && \
     mkdir mozilla-iot && \
     cd mozilla-iot && \
     git clone https://github.com/mozilla-iot/intent-parser && \
     git clone https://github.com/mozilla-iot/gateway && \
     cd gateway && \
-    yarn
+    /home/node/node_modules/.bin/yarn
 
 USER root
 ADD service /etc/service
