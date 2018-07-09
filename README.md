@@ -47,4 +47,10 @@ If you'd like to build an image yourself, run the following:
 git clone https://github.com/mozilla-iot/gateway-docker
 cd gateway-docker
 docker build -t gateway .
+docker run \
+    -d \
+    -v /path/to/shared/data:/home/node/.mozilla-iot \
+    --net=host \
+    --name mozilla-iot-gateway \
+    gateway
 ```
