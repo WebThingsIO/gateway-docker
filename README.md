@@ -61,7 +61,7 @@ docker run \
 ## Connecting
 
 After running the container, you can connect to it at:
-http://<host-ip-address>:8080
+http://&lt;host-ip-address&gt;:8080
 
 ## Building
 
