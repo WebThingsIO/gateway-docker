@@ -42,6 +42,7 @@ Tested on Raspberry Pi 3 Model B/B+:
 ```shell
 docker run \
     -d \
+    --rm \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --net=host \
     --name mozilla-iot-gateway \
