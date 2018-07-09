@@ -10,14 +10,30 @@ While the gateway doesn't necessarily require full local network access, some ad
 
 ### AMD64
 
-```shell
-docker run \
-    -d \
-    -v /path/to/shared/data:/home/node/.mozilla-iot \
-    --net=host \
-    --name mozilla-iot-gateway \
-    mozillaiot/gateway:latest
-```
+* On Linux:
+
+    ```shell
+    docker run \
+        -d \
+        --rm \
+        -v /path/to/shared/data:/home/node/.mozilla-iot \
+        --net=host \
+        --name mozilla-iot-gateway \
+        mozillaiot/gateway:latest
+    ```
+
+* On Windows or macOS:
+
+    ```shell
+    docker run \
+        -d \
+        --rm \
+        -p 8080:8080 \
+        -p 4443:4443 \
+        -v /path/to/shared/data:/home/node/.mozilla-iot \
+        --name mozilla-iot-gateway \
+        mozillaiot/gateway:latest
+    ```
 
 ### ARM (e.g. Raspberry Pi)
 
@@ -32,12 +48,19 @@ docker run \
     mozillaiot/gateway:arm
 ```
 
-## Parameters
+### Parameters
 
 * `-d` - Run in daemon mode (in the background)
+* `--rm` - Remove the container after it stops
 * `-v /path/to/shared/data:/home/node/.mozilla-iot` - Change `/path/to/shared/data` to some local path. It will be used to store the "user profile", i.e. add-ons, logs, configuration data, etc.
 * `--net=host` - Shares host networking with containeri (**highly recommended**)
+* `-p 8080:8080` / `-p 4443:4443` - Forward necessary ports to the container
 * `--name mozilla-iot-gateway` - Name of the container
+
+## Connecting
+
+After running the container, you can connect to it at:
+http://<host-ip-address>:8080
 
 ## Building
 
@@ -49,6 +72,7 @@ cd gateway-docker
 docker build -t gateway .
 docker run \
     -d \
+    --rm \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --net=host \
     --name mozilla-iot-gateway \
