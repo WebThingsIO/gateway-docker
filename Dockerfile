@@ -32,13 +32,18 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
     touch /etc/inittab && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
+ARG gateway_url
+ENV gateway_url ${url:-https://github.com/mozilla-iot/gateway}
+ARG gateway_branch
+ENV gateway_branch ${branch:-master}
+
 USER node
 RUN cd /home/node && \
     npm install yarn && \
     mkdir mozilla-iot && \
     cd mozilla-iot && \
-    git clone https://github.com/mozilla-iot/intent-parser && \
-    git clone https://github.com/mozilla-iot/gateway && \
+    git clone --depth 1 --recursive https://github.com/mozilla-iot/intent-parser && \
+    git clone --depth 1 --recursive -b ${gateway_branch} ${gateway_url} && \
     cd gateway && \
     /home/node/node_modules/.bin/yarn
 
