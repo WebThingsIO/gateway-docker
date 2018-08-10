@@ -38,14 +38,15 @@ ARG gateway_branch
 ENV gateway_branch ${branch:-master}
 
 USER node
-RUN cd /home/node && \
+WORKDIR /home/node
+RUN set -x && \
     npm install yarn && \
     mkdir mozilla-iot && \
     cd mozilla-iot && \
     git clone --depth 1 --recursive https://github.com/mozilla-iot/intent-parser && \
     git clone --depth 1 --recursive -b ${gateway_branch} ${gateway_url} && \
     cd gateway && \
-    /home/node/node_modules/.bin/yarn
+    /home/node/node_modules/.bin/yarn --verbose
 
 USER root
 ADD service /etc/service
