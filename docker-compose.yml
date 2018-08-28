@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  web:
+    build: .
+    command: /home/node/mozilla-iot/gateway/run-app.sh
+    volumes:
+      - /home/node/.mozilla-iot
+    ports:
+      - "8080:8080"
+      - "4443:4443"
