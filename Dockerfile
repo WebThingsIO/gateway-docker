@@ -41,7 +41,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
     ldconfig /usr/local/lib && \
     cd / && \
     rm -rf /tmp/open-zwave && \
-    usermod -a -G sudo node && \
+    usermod -a -G sudo,dialout node && \
     touch /etc/inittab && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
@@ -65,5 +65,6 @@ USER root
 ADD service /etc/service
 ADD cron.d /etc/cron.d
 ADD scripts /opt/scripts
+RUN cp /home/node/mozilla-iot/gateway/tools/udevadm /bin/udevadm
 
 ENTRYPOINT ["/usr/bin/runsvdir", "/etc/service"]
