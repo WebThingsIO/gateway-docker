@@ -9,6 +9,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
         build-essential \
         certbot \
         cron \
+        ffmpeg \
         git \
         libcap2-bin \
         libffi-dev \
