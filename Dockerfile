@@ -7,8 +7,6 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
     apt dist-upgrade -y && \
     apt install -y \
         build-essential \
-        certbot \
-        cron \
         ffmpeg \
         git \
         libcap2-bin \
@@ -64,8 +62,6 @@ RUN set -x && \
 
 USER root
 ADD service /etc/service
-ADD cron.d /etc/cron.d
-ADD scripts /opt/scripts
 RUN cp /home/node/mozilla-iot/gateway/tools/udevadm /bin/udevadm
 
 ENTRYPOINT ["/usr/bin/runsvdir", "/etc/service"]

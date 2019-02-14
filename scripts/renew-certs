@@ -1,4 +1,0 @@
-#!/bin/sh
-
-export MOZIOT_HOME=/home/node/.mozilla-iot
-/home/node/mozilla-iot/gateway/tools/renew-certificates.sh
