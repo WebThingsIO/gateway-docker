@@ -30,16 +30,6 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
     pip2 install git+https://github.com/mozilla-iot/gateway-addon-python#egg=gateway_addon && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
-    cd /tmp && \
-    git clone https://github.com/OpenZWave/open-zwave.git && \
-    cd open-zwave && \
-    CFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0 make && \
-    CFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0 make install && \
-    ( [ -d /usr/local/lib64 ] && ln -s /usr/local/lib64/libopenzwave.so /usr/local/lib/libopenzwave.so || true ) && \
-    ( [ -d /usr/local/lib64 ] && ln -s /usr/local/lib64/libopenzwave.so.1.4 /usr/local/lib/libopenzwave.so.1.4 || true ) && \
-    ldconfig /usr/local/lib && \
-    cd / && \
-    rm -rf /tmp/open-zwave && \
     usermod -a -G sudo,dialout node && \
     touch /etc/inittab && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
