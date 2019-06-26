@@ -1,9 +1,13 @@
-version: "2"
+version: "3"
 
 services:
   web:
-    build: .
+    container_name: mozilla-iot-gateway
+    image: mozillaiot/gateway:latest
     command: /home/node/mozilla-iot/gateway/run-app.sh
     ports:
       - "8080:8080"
       - "4443:4443"
+    volumes:
+      - /path/to/shared/data:/home/node/.mozilla-iot
+

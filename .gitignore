@@ -1,0 +1,6 @@
+# user profile based files
+config/
+etc/
+log/
+ssl/
+uploads/
