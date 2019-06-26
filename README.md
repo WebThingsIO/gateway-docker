@@ -53,8 +53,8 @@ docker run \
 
 * `-d` - Run in daemon mode (in the background)
 * `--rm` - Remove the container after it stops
-* `-v /path/to/shared/data:/home/node/.mozilla-iot` - Change `/path/to/shared/data` to some local path. It will be used to store the "user profile", i.e. add-ons, logs, configuration data, etc.
-* `--net=host` - Shares host networking with containeri (**highly recommended**)
+* `-v /path/to/shared/data:/home/node/.mozilla-iot` - Change `/path/to/shared/data` to some local path. We are mounting a directory on the host to the container in order to store the persistent "user profile" data, e.g. add-ons, logs, configuration data, etc.
+* `--net=host` - Shares host networking with container (**highly recommended**)
 * `-p 8080:8080` / `-p 4443:4443` - Forward necessary ports to the container
 * `--name mozilla-iot-gateway` - Name of the container
 
