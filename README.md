@@ -60,9 +60,9 @@ docker run \
 
 ## Using docker-compose
 
-Note: The present docker-compose config file stores the "user profile" data in the same directory where you run the command and it pulls `mozillaiot/gateway:latest`. If you would like to use the ARM version then change the image field to `mozillaiot/gateway:arm`.
+***NOTE:*** The present docker-compose config file stores the "user profile" data in the same directory where you run the command, and it pulls `mozillaiot/gateway:latest`. If you would like to use the ARM version, then change the image field to `mozillaiot/gateway:arm`.
 
-``` docker-compose up -d ```
+``` docker-compose up -d```
 
 ## Connecting
 
