@@ -58,6 +58,12 @@ docker run \
 * `-p 8080:8080` / `-p 4443:4443` - Forward necessary ports to the container
 * `--name mozilla-iot-gateway` - Name of the container
 
+## Using docker-compose
+
+***NOTE:*** The present docker-compose config file stores the "user profile" data in the same directory where you run the command, and it pulls `mozillaiot/gateway:latest`. If you would like to use the ARM version, then change the image field to `mozillaiot/gateway:arm`.
+
+``` docker-compose up -d```
+
 ## Connecting
 
 After running the container, you can connect to it at:
