@@ -9,5 +9,5 @@ services:
       - "8080:8080"
       - "4443:4443"
     volumes:
-      - /path/to/shared/data:/home/node/.mozilla-iot
+      - ./:/home/node/.mozilla-iot
 
