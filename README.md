@@ -1,6 +1,6 @@
 # Docker Mozilla WebThings Gateway
 
-[Docker image](https://github.com/mozilla-iot/gateway-docker) based on Debian Stretch for running the [Mozilla WebThings Gateway](https://github.com/mozilla-iot/gateway).
+[Docker image](https://github.com/mozilla-iot/gateway-docker) based on Debian Buster for running the [Mozilla WebThings Gateway](https://github.com/mozilla-iot/gateway).
 
 ## Compatibility
 
