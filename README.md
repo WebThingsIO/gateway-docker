@@ -85,3 +85,7 @@ docker run \
     --name mozilla-iot-gateway \
     gateway
 ```
+
+## Notes
+
+* mDNS host resolution (e.g. resolving mywebthing.local) does not work inside the container, due to technical limitations. Therefore, if you're using an add-on which typically uses that feature, such as the Web Thing add-on, you'll need to instead use IP addresses.
