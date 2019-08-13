@@ -86,6 +86,11 @@ docker run \
     gateway
 ```
 
+You can add the following build args:
+* `--build-arg "gateway_url=https://github.com/<your-fork>/gateway"`
+* `--build-arg "gateway_branch=<your-branch>"`
+* `--build-arg "gateway_addon_version=<your-version>"`
+
 ## Notes
 
 * mDNS host resolution (e.g. resolving mywebthing.local) does not work inside the container, due to technical limitations. Therefore, if you're using an add-on which typically uses that feature, such as the Web Thing add-on, you'll need to instead use IP addresses.
