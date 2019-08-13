@@ -18,7 +18,7 @@ While the gateway doesn't necessarily require full local network access, some ad
         --rm \
         -v /path/to/shared/data:/home/node/.mozilla-iot \
         --net=host \
-        --name mozilla-iot-gateway \
+        --name webthings-gateway \
         mozillaiot/gateway:latest
     ```
 
@@ -31,7 +31,7 @@ While the gateway doesn't necessarily require full local network access, some ad
         -p 8080:8080 \
         -p 4443:4443 \
         -v /path/to/shared/data:/home/node/.mozilla-iot \
-        --name mozilla-iot-gateway \
+        --name webthings-gateway \
         mozillaiot/gateway:latest
     ```
 
@@ -45,7 +45,7 @@ docker run \
     --rm \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --net=host \
-    --name mozilla-iot-gateway \
+    --name webthings-gateway \
     mozillaiot/gateway:arm
 ```
 
@@ -56,7 +56,7 @@ docker run \
 * `-v /path/to/shared/data:/home/node/.mozilla-iot` - Change `/path/to/shared/data` to some local path. We are mounting a directory on the host to the container in order to store the persistent "user profile" data, e.g. add-ons, logs, configuration data, etc.
 * `--net=host` - Shares host networking with container (**highly recommended**)
 * `-p 8080:8080` / `-p 4443:4443` - Forward necessary ports to the container
-* `--name mozilla-iot-gateway` - Name of the container
+* `--name webthings-gateway` - Name of the container
 
 ## Using docker-compose
 
@@ -82,7 +82,7 @@ docker run \
     --rm \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --net=host \
-    --name mozilla-iot-gateway \
+    --name webthings-gateway \
     gateway
 ```
 

@@ -1,12 +1,13 @@
 version: "3"
 
 services:
-  web:
-    container_name: mozilla-iot-gateway
+  webthings-gateway:
+    container_name: webthings-gateway
     image: mozillaiot/gateway:latest
-    command: /home/node/mozilla-iot/gateway/run-app.sh
+    restart: unless-stopped
+    network_mode: host
     ports:
       - "8080:8080"
       - "4443:4443"
     volumes:
-      - .:/home/node/.mozilla-iot
+      - /opt/docker/webthings-gateway:/home/node/.mozilla-iot
