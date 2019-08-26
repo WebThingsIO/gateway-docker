@@ -20,6 +20,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
         libusb-1.0-0-dev \
         lsb-release \
         mosquitto \
+        net-tools \
         pkg-config \
         python \
         python-pip \

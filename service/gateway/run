@@ -3,4 +3,4 @@
 export MOZIOT_HOME=/home/node/.mozilla-iot
 chown -R node:node "${MOZIOT_HOME}"
 exec 2>&1
-exec su - node -c "cd /home/node/mozilla-iot/gateway && ./run-app.sh"
+exec su node -c "cd /home/node/mozilla-iot/gateway && ./run-app.sh"
