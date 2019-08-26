@@ -51,7 +51,8 @@ RUN set -x && \
     git clone --depth 1 --recursive https://github.com/mozilla-iot/intent-parser && \
     git clone --depth 1 --recursive -b ${gateway_branch} ${gateway_url} && \
     cd gateway && \
-    npm install
+    npm install && \
+    ./node_modules/.bin/webpack
 
 USER root
 ADD service /etc/service
