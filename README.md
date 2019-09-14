@@ -60,7 +60,7 @@ docker run \
 
 ## Using docker-compose
 
-***NOTE:*** The present docker-compose config file stores the "user profile" data in the same directory where you run the command, and it pulls `mozillaiot/gateway:latest`. If you would like to use the ARM version, then change the image field to `mozillaiot/gateway:arm`.
+***NOTE:*** The present docker-compose config file pulls `mozillaiot/gateway:latest`. If you would like to use the ARM version, then change the image field to `mozillaiot/gateway:arm`.
 
 ``` docker-compose up -d```
 
@@ -94,3 +94,4 @@ You can add the following build args:
 ## Notes
 
 * mDNS host resolution (e.g. resolving mywebthing.local) does not work inside the container, due to technical limitations. Therefore, if you're using an add-on which typically uses that feature, such as the Web Thing add-on, you'll need to instead use IP addresses.
+* If you need to use Zigbee, Z-Wave, or some other add-on which requires physically attached hardware, you will have to share your device into your container, e.g. `--device /dev/ttyACM0:/dev/ttyACM0`.
