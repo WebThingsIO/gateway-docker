@@ -9,6 +9,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
     apt update && \
     apt dist-upgrade -y && \
     apt install -y \
+        arping \
         build-essential \
         ffmpeg \
         git \
