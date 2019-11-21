@@ -17,6 +17,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
         libffi-dev \
         libnanomsg-dev \
         libnanomsg5 \
+        libnss-mdns \
         libudev-dev \
         libusb-1.0-0-dev \
         lsb-release \
@@ -56,6 +57,7 @@ RUN set -x && \
     ./node_modules/.bin/webpack
 
 USER root
+ADD avahi-daemon.conf /etc/avahi
 ADD service /etc/service
 RUN cp /home/node/mozilla-iot/gateway/tools/udevadm /bin/udevadm
 
