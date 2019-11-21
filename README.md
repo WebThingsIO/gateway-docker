@@ -93,5 +93,4 @@ You can add the following build args:
 
 ## Notes
 
-* mDNS host resolution (e.g. resolving mywebthing.local) does not work inside the container, due to technical limitations. Therefore, if you're using an add-on which typically uses that feature, such as the Web Thing add-on, you'll need to instead use IP addresses.
 * If you need to use Zigbee, Z-Wave, or some other add-on which requires physically attached hardware, you will have to share your device into your container, e.g. `--device /dev/ttyACM0:/dev/ttyACM0`.
