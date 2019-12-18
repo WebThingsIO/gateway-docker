@@ -15,7 +15,6 @@ While the gateway doesn't necessarily require full local network access, some ad
     ```shell
     docker run \
         -d \
-        --rm \
         -v /path/to/shared/data:/home/node/.mozilla-iot \
         --net=host \
         --name webthings-gateway \
@@ -27,7 +26,6 @@ While the gateway doesn't necessarily require full local network access, some ad
     ```shell
     docker run \
         -d \
-        --rm \
         -p 8080:8080 \
         -p 4443:4443 \
         -v /path/to/shared/data:/home/node/.mozilla-iot \
@@ -42,7 +40,6 @@ Tested on Raspberry Pi 3 Model B/B+:
 ```shell
 docker run \
     -d \
-    --rm \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --net=host \
     --name webthings-gateway \
@@ -52,7 +49,6 @@ docker run \
 ### Parameters
 
 * `-d` - Run in daemon mode (in the background)
-* `--rm` - Remove the container after it stops
 * `-v /path/to/shared/data:/home/node/.mozilla-iot` - Change `/path/to/shared/data` to some local path. We are mounting a directory on the host to the container in order to store the persistent "user profile" data, e.g. add-ons, logs, configuration data, etc.
 * `--net=host` - Shares host networking with container (**highly recommended**)
 * `-p 8080:8080` / `-p 4443:4443` - Forward necessary ports to the container
@@ -79,7 +75,6 @@ cd gateway-docker
 docker build -t gateway .
 docker run \
     -d \
-    --rm \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --net=host \
     --name webthings-gateway \
