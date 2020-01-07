@@ -9,5 +9,7 @@ services:
     ports:
       - "8080:8080"
       - "4443:4443"
+    environment:
+      - "TZ=America/Los_Angeles"
     volumes:
       - /opt/docker/webthings-gateway:/home/node/.mozilla-iot

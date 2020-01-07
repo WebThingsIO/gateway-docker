@@ -15,6 +15,7 @@ While the gateway doesn't necessarily require full local network access, some ad
     ```shell
     docker run \
         -d \
+        -e TZ=America/Los_Angeles \
         -v /path/to/shared/data:/home/node/.mozilla-iot \
         --net=host \
         --name webthings-gateway \
@@ -28,6 +29,7 @@ While the gateway doesn't necessarily require full local network access, some ad
         -d \
         -p 8080:8080 \
         -p 4443:4443 \
+        -e TZ=America/Los_Angeles \
         -v /path/to/shared/data:/home/node/.mozilla-iot \
         --name webthings-gateway \
         mozillaiot/gateway:latest
@@ -40,6 +42,7 @@ Tested on Raspberry Pi 3 Model B/B+:
 ```shell
 docker run \
     -d \
+    -e TZ=America/Los_Angeles \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --net=host \
     --name webthings-gateway \
@@ -49,6 +52,7 @@ docker run \
 ### Parameters
 
 * `-d` - Run in daemon mode (in the background)
+* `-e TZ=America/Los_Angeles` - Set the time zone to `America/Los_Angeles`. The list of names can be found [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
 * `-v /path/to/shared/data:/home/node/.mozilla-iot` - Change `/path/to/shared/data` to some local path. We are mounting a directory on the host to the container in order to store the persistent "user profile" data, e.g. add-ons, logs, configuration data, etc.
 * `--net=host` - Shares host networking with container (**highly recommended**)
 * `-p 8080:8080` / `-p 4443:4443` - Forward necessary ports to the container
@@ -75,6 +79,7 @@ cd gateway-docker
 docker build -t gateway .
 docker run \
     -d \
+    -e TZ=America/Los_Angeles \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --net=host \
     --name webthings-gateway \
