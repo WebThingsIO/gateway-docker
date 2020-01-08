@@ -59,6 +59,7 @@ RUN set -x && \
 USER root
 ADD avahi-daemon.conf /etc/avahi
 ADD service /etc/service
+ADD init.sh /
 RUN cp /home/node/mozilla-iot/gateway/tools/udevadm /bin/udevadm
 
-ENTRYPOINT ["/usr/bin/runsvdir", "/etc/service"]
+ENTRYPOINT ["/init.sh"]
