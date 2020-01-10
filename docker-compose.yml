@@ -6,9 +6,10 @@ services:
     image: mozillaiot/gateway:latest
     restart: unless-stopped
     network_mode: host
-    ports:
-      - "8080:8080"
-      - "4443:4443"
+    # ports are ignored because of "network_mode: host". Either use ports or network_mode: host 
+    #ports:
+    #  - "8080:8080"
+    #  - "4443:4443"
     environment:
       - "TZ=America/Los_Angeles"
     volumes:
