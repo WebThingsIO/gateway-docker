@@ -3,7 +3,7 @@ FROM node:8-buster
 EXPOSE 8080 4443
 
 ARG gateway_addon_version
-ENV gateway_addon_version ${gateway_addon_version:-@v0.10.0}
+ENV gateway_addon_version ${gateway_addon_version:-@v0.11.0}
 
 RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list && \
     apt update && \
