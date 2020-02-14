@@ -54,7 +54,8 @@ RUN set -x && \
     git clone --depth 1 --recursive -b ${gateway_branch} ${gateway_url} && \
     cd gateway && \
     npm install && \
-    ./node_modules/.bin/webpack
+    ./node_modules/.bin/webpack && \
+    npm prune --production
 
 USER root
 ADD avahi-daemon.conf /etc/avahi
