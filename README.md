@@ -2,7 +2,8 @@
 
 [Docker image](https://github.com/mozilla-iot/gateway-docker) based on Debian
 Buster for running the
-[Mozilla WebThings Gateway](https://github.com/mozilla-iot/gateway).
+[Mozilla WebThings Gateway](https://github.com/mozilla-iot/gateway). The image
+is built for AMD64, ARMv7, and ARMv8 (AArch64).
 
 ## Compatibility
 
@@ -15,8 +16,6 @@ Currently, this flag will not work when using
 [this](https://github.com/docker/for-win/issues/543).
 
 ## Usage
-
-### AMD64
 
 * On Linux:
 
@@ -46,22 +45,6 @@ Currently, this flag will not work when using
         --name webthings-gateway \
         mozillaiot/gateway:latest
     ```
-
-### ARM (e.g. Raspberry Pi)
-
-Tested on Raspberry Pi 3 Model B/B+:
-
-```shell
-docker run \
-    -d \
-    -e TZ=America/Los_Angeles \
-    -v /path/to/shared/data:/home/node/.mozilla-iot \
-    --network="host" \
-    --log-opt max-size=1m \
-    --log-opt max-file=10 \
-    --name webthings-gateway \
-    mozillaiot/gateway:arm
-```
 
 ### Parameters
 
@@ -99,10 +82,6 @@ volume mounted to `/home/node/.mozilla-iot`). Contents of the file:
 Edit the ports as you like.
 
 ## Using docker-compose
-
-***NOTE:*** The present docker-compose config file pulls
-`mozillaiot/gateway:latest`. If you would like to use the ARM version, then
-change the image field to `mozillaiot/gateway:arm`.
 
 ```
 docker-compose up -d

@@ -22,25 +22,22 @@ RUN set -x && \
         git \
         libcap2-bin \
         libffi-dev \
-        libnanomsg-dev \
-        libnanomsg5 \
         libnss-mdns \
+        libpng-dev \
+        libtool \
         lsb-release \
         mosquitto \
         net-tools \
         pkg-config \
         python \
-        python-pip \
-        python-setuptools \
         python3 \
         python3-pip \
         python3-setuptools \
-        runit \
-        sudo && \
+        sudo \
+        zlib1g-dev && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python@${gateway_addon_version}#egg=gateway_addon && \
-    pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
     usermod -a -G sudo,dialout,997 node && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
@@ -65,7 +62,6 @@ RUN set -x && \
 
 USER root
 ADD avahi-daemon.conf /etc/avahi
-ADD service /etc/service
 ADD init.sh /
 RUN cp /home/node/mozilla-iot/gateway/tools/udevadm /bin/udevadm
 
