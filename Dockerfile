@@ -55,6 +55,8 @@ RUN set -x && \
     cd gateway && \
     npm install && \
     ./node_modules/.bin/webpack && \
+    rm -rf ./node_modules/gifsicle && \
+    rm -rf ./node_modules/mozjpeg && \
     npm prune --production
 
 USER root
