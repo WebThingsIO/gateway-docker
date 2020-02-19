@@ -3,9 +3,9 @@ FROM node:8-buster
 EXPOSE 8080 4443
 
 ARG gateway_addon_version
-ENV gateway_addon_version ${gateway_addon_version:-@v0.11.0}
+ENV gateway_addon_version ${gateway_addon_version:-v0.11.0}
 
-RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list && \
+RUN echo "deb http://ftp.debian.org/debian buster-backports main" >> /etc/apt/sources.list && \
     apt update && \
     apt dist-upgrade -y && \
     apt install -y \
@@ -34,7 +34,7 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
         sudo \
         udev && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    pip3 install git+https://github.com/mozilla-iot/gateway-addon-python${gateway_addon_version}#egg=gateway_addon && \
+    pip3 install git+https://github.com/mozilla-iot/gateway-addon-python@${gateway_addon_version}#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
     usermod -a -G sudo,dialout node && \
     touch /etc/inittab && \
