@@ -2,10 +2,16 @@ FROM node:8-buster
 
 EXPOSE 8080 4443
 
+ARG gateway_url
+ENV gateway_url ${gateway_url:-https://github.com/mozilla-iot/gateway}
+ARG gateway_branch
+ENV gateway_branch ${gateway_branch:-master}
 ARG gateway_addon_version
 ENV gateway_addon_version ${gateway_addon_version:-v0.11.0}
 
-RUN echo "deb http://ftp.debian.org/debian buster-backports main" >> /etc/apt/sources.list && \
+ARG DEBIAN_FRONTEND=noninteractive
+RUN set -x && \
+    echo "deb http://ftp.debian.org/debian buster-backports main" >> /etc/apt/sources.list && \
     apt update && \
     apt dist-upgrade -y && \
     apt install -y \
@@ -39,11 +45,6 @@ RUN echo "deb http://ftp.debian.org/debian buster-backports main" >> /etc/apt/so
     usermod -a -G sudo,dialout node && \
     touch /etc/inittab && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-ARG gateway_url
-ENV gateway_url ${gateway_url:-https://github.com/mozilla-iot/gateway}
-ARG gateway_branch
-ENV gateway_branch ${gateway_branch:-master}
 
 USER node
 WORKDIR /home/node
