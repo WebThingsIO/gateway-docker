@@ -59,7 +59,7 @@ docker run \
 * `--name webthings-gateway` - Name of the container
 
 ## Changing ports in `--network="host"` mode
-Create a file `local.json` and map it to `/path/to/shared/data/config/local.json`. Contents of the file:
+Create a file `local.json` and map it to `/path/to/shared/data/config/local.json` (where `/path/to/shared/data` is the volume mounted to `/home/node/.mozilla-iot`). Contents of the file:
 
 ```json
 {
