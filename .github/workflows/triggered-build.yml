@@ -1,0 +1,21 @@
+name: Build and push images
+
+on:
+  repository_dispatch:
+    types: build-image
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build image
+        uses: ilteoood/docker_buildx@master
+        with:
+          publish: true
+          imageName: mozillaiot/gateway
+          platform: linux/amd64,linux/arm/v7,linux/arm64
+          buildArg: gateway_url=${{ github.event.client_payload.gateway_url }},gateway_branch=${{ github.event.client_payload.gateway_branch }},gateway_addon_version=${{ github.event.client_payload.gateway_addon_version }}
+          tag: latest,${{ github.event.client_payload.version }}
+          dockerHubUser: ${{ secrets.DOCKER_HUB_USER }}
+          dockerHubPassword: ${{ secrets.DOCKER_HUB_PASSWORD }}
