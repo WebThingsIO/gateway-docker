@@ -11,11 +11,44 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch:
+          [
+            "amd64",
+            "arm",
+          ]
+        include:
+          - arch: "amd64"
+            image_arch: "amd64"
+            qemu_arch: ""
+          - arch: "arm"
+            image_arch: "arm32v7"
+            qemu_arch: "arm"
     steps:
       - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: |
+          sudo apt -qq update
+          sudo apt install -y qemu qemu-user-static binfmt-support
+          sudo update-binfmts --enable qemu-arm
       - name: Build image
-        uses: ilteoood/docker_buildx@master
-        with:
-          publish: false
-          imageName: mozillaiot/gateway
-          platform: linux/amd64,linux/arm/v7,linux/arm64
+        run: |
+          if [ -n "${{ matrix.qemu_arch }}" ]; then
+            mkdir local
+            cp "/usr/bin/qemu-${{ matrix.qemu_arch }}-static" local/
+            sed \
+              -e "s/{{prefix}}/${{ matrix.image_arch }}/" \
+              -e "s/{{add_qemu}}/ADD local\/qemu-${{ matrix.qemu_arch }}-static \/usr\/bin\/qemu-${{ matrix.qemu_arch }}-static/" \
+              Dockerfile.template > Dockerfile
+          else
+            sed \
+              -e "s/{{prefix}}/${{ matrix.image_arch }}/" \
+              -e "s/{{add_qemu}}//" \
+              Dockerfile.template > Dockerfile
+          fi
+          docker build -t gateway .
+          docker tag gateway mozillaiot/gateway:${{ matrix.arch }}
+          if [ "${{ matrix.arch }}" = "amd64" ]; then
+            docker tag gateway mozillaiot/gateway:latest
+          fi

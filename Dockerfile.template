@@ -1,6 +1,8 @@
-FROM node:8-buster
+FROM {{prefix}}/node:8-buster
 
 EXPOSE 8080 4443
+
+{{add_qemu}}
 
 ARG gateway_url
 ENV gateway_url ${gateway_url:-https://github.com/mozilla-iot/gateway}
