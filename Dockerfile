@@ -7,7 +7,7 @@ ENV gateway_url ${gateway_url:-https://github.com/mozilla-iot/gateway}
 ARG gateway_branch
 ENV gateway_branch ${gateway_branch:-master}
 ARG gateway_addon_version
-ENV gateway_addon_version ${gateway_addon_version:-v0.11.0}
+ENV gateway_addon_version ${gateway_addon_version:-master}
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN set -x && \
@@ -39,7 +39,7 @@ RUN set -x && \
         runit \
         sudo \
         udev && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    rm -rf /var/lib/apt/lists/* && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python@${gateway_addon_version}#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
     usermod -a -G sudo,dialout node && \
