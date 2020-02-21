@@ -24,8 +24,6 @@ RUN set -x && \
         libnanomsg-dev \
         libnanomsg5 \
         libnss-mdns \
-        libudev-dev \
-        libusb-1.0-0-dev \
         lsb-release \
         mosquitto \
         net-tools \
@@ -42,7 +40,6 @@ RUN set -x && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python@${gateway_addon_version}#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
     usermod -a -G sudo,dialout node && \
-    touch /etc/inittab && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER node
