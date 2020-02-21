@@ -4,3 +4,6 @@ etc/
 log/
 ssl/
 uploads/
+
+# docker buildx output
+image/

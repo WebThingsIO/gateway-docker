@@ -1,4 +1,4 @@
-FROM node:8-buster
+FROM node:12-buster-slim
 
 EXPOSE 8080 4443
 
@@ -11,7 +11,7 @@ ENV gateway_addon_version ${gateway_addon_version:-master}
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN set -x && \
-    echo "deb http://ftp.debian.org/debian buster-backports main" >> /etc/apt/sources.list && \
+    echo "deb http://deb.debian.org/debian buster-backports main" >> /etc/apt/sources.list && \
     apt update && \
     apt dist-upgrade -y && \
     apt install -y \
@@ -37,8 +37,7 @@ RUN set -x && \
         python3-pip \
         python3-setuptools \
         runit \
-        sudo \
-        udev && \
+        sudo && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python@${gateway_addon_version}#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
