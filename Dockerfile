@@ -16,6 +16,7 @@ RUN set -x && \
     apt dist-upgrade -y && \
     apt install -y \
         arping \
+        autoconf \
         build-essential \
         ffmpeg \
         git \
@@ -36,6 +37,7 @@ RUN set -x && \
         python3-setuptools \
         runit \
         sudo && \
+    apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python@${gateway_addon_version}#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
@@ -50,7 +52,7 @@ RUN set -x && \
     git clone --depth 1 --recursive https://github.com/mozilla-iot/intent-parser && \
     git clone --depth 1 --recursive -b ${gateway_branch} ${gateway_url} && \
     cd gateway && \
-    npm install && \
+    CPPFLAGS="-DPNG_ARM_NEON_OPT=0" npm ci && \
     ./node_modules/.bin/webpack && \
     rm -rf ./node_modules/gifsicle && \
     rm -rf ./node_modules/mozjpeg && \
