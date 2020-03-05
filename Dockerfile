@@ -56,7 +56,12 @@ RUN set -x && \
     ./node_modules/.bin/webpack && \
     rm -rf ./node_modules/gifsicle && \
     rm -rf ./node_modules/mozjpeg && \
-    npm prune --production
+    npm prune --production && \
+    sed -i \
+        -e 's/ cli: true/ cli: false/' \
+        -e 's/ behindForwarding: true/ behindForwarding: false/' \
+        -e 's/ localAccess: true/ localAccess: false/' \
+        config/default.js
 
 USER root
 ADD avahi-daemon.conf /etc/avahi
