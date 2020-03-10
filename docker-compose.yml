@@ -19,7 +19,7 @@ services:
       driver: "json-file"
       options:
         max-size: "1m"
-        max-file: 10
+        max-file: "10"
     # If certain devices are needed, e.g. USB dongles, enable them here.
     #devices:
     #  - /dev/ttyUSB0:/dev/ttyUSB0
