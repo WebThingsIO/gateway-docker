@@ -15,6 +15,11 @@ services:
       - "TZ=America/Los_Angeles"
     volumes:
       - /opt/docker/webthings-gateway:/home/node/.mozilla-iot
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: 10
     # If certain devices are needed, e.g. USB dongles, enable them here.
     #devices:
     #  - /dev/ttyUSB0:/dev/ttyUSB0

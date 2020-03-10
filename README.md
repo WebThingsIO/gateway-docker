@@ -26,6 +26,8 @@ Currently, this flag will not work when using
         -e TZ=America/Los_Angeles \
         -v /path/to/shared/data:/home/node/.mozilla-iot \
         --network="host" \
+        --log-opt max-size=1m \
+        --log-opt max-file=10 \
         --name webthings-gateway \
         mozillaiot/gateway:latest
     ```
@@ -39,6 +41,8 @@ Currently, this flag will not work when using
         -p 4443:4443 \
         -e TZ=America/Los_Angeles \
         -v /path/to/shared/data:/home/node/.mozilla-iot \
+        --log-opt max-size=1m \
+        --log-opt max-file=10 \
         --name webthings-gateway \
         mozillaiot/gateway:latest
     ```
@@ -53,6 +57,8 @@ docker run \
     -e TZ=America/Los_Angeles \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --network="host" \
+    --log-opt max-size=1m \
+    --log-opt max-file=10 \
     --name webthings-gateway \
     mozillaiot/gateway:arm
 ```
@@ -71,6 +77,8 @@ docker run \
   recommended**, needed by some addons, -p is ignored if this option is used).
 * `-p 8080:8080` / `-p 4443:4443` - Forward necessary ports to the container
   (ignored if `--network="host"` is present).
+* `--log-opt max-size=1m` - limit the log size to 1 MB
+* `--log-opt max-file=10` - limit the number of saved log files to 10
 * `--name webthings-gateway` - Name of the container.
 
 ## Changing ports in `--network="host"` mode
@@ -118,6 +126,8 @@ docker run \
     -e TZ=America/Los_Angeles \
     -v /path/to/shared/data:/home/node/.mozilla-iot \
     --network="host" \
+    --log-opt max-size=1m \
+    --log-opt max-file=10 \
     --name webthings-gateway \
     gateway
 ```
