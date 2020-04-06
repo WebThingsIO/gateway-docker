@@ -41,7 +41,7 @@ RUN set -x && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python@${gateway_addon_version}#egg=gateway_addon && \
     pip3 install git+https://github.com/mycroftai/adapt#egg=adapt-parser && \
-    usermod -a -G sudo,dialout node && \
+    usermod -a -G sudo,dialout,997 node && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER node
