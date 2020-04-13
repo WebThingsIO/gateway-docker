@@ -20,6 +20,7 @@ RUN set -x && \
         build-essential \
         ffmpeg \
         git \
+        iputils-ping \
         libcap2-bin \
         libffi-dev \
         libnss-mdns \
