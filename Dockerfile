@@ -39,7 +39,8 @@ RUN set -x && \
     apt clean && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install git+https://github.com/mozilla-iot/gateway-addon-python@${gateway_addon_version}#egg=gateway_addon && \
-    usermod -a -G sudo,dialout node && \
+    groupadd -g 997 gpio && \
+    usermod -a -G sudo,dialout,gpio node && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER node

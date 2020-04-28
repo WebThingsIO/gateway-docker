@@ -123,6 +123,10 @@ You can add the following build args:
   container, e.g. `--device /dev/ttyACM0:/dev/ttyACM0`. They will also need to
   be owned by GID 20, which corresponds to the `dialout` group in the
   container. This can be done using udev rules or something else.
+* If you need to use GPIO in the container (e.g. on a Raspberry Pi host), you
+  will need to either run in privileged mode with `--privileged` or share in
+  your sysfs filesystem with `-v /sys:/sys`. The sysfs nodes will also need to
+  be owned by GID 997, which corresponds to the `gpio` group in the container.
 * If you need to use Bluetooth in the container, you will need to disable BlueZ
   on the host (if running), e.g. `systemctl disable bluetooth`, and you will
   need to run the container in privileged mode, i.e. `--privileged`.
