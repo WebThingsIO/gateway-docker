@@ -1,3 +1,5 @@
+⚠️ **Note:** This repo has been deprecated. The WebThings Gateway docker image can now be built from the [main gateway repository](https://github.com/WebThingsIO/gateway). See [README.docker.md](https://github.com/WebThingsIO/gateway/blob/master/README.docker.md).
+
 # Docker Mozilla WebThings Gateway
 
 [Docker image](https://github.com/mozilla-iot/gateway-docker) based on Debian
